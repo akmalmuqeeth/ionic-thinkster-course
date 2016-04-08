@@ -49,6 +49,16 @@ angular.module('songhop', ['ionic', 'songhop.controllers'])
       }
     }
   })
+      .state('splash', {
+          url: '/',
+          templateUrl: 'templates/splash.html',
+          controller: 'SplashCtrl',
+          onEnter: function($state, User){
+              User.checkSession().then(function(hasSession) {
+                  if (hasSession) $state.go('tab.discover');
+              });
+          }
+      })
 
   .state('tab.favorites', {
       url: '/favorites',
